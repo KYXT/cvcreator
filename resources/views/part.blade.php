@@ -76,4 +76,5 @@
 
 @section('js')
     <script src="js/history.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 @endsection
