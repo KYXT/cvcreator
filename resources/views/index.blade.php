@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="main-form">
+    <form class="main-form" enctype="multipart/form-data" method="POST">
+        @csrf
         <h4>Dane osobowe</h4>
         <hr>
 
@@ -144,10 +145,14 @@
 
         </div>
 
-        <button type="submit" class="btn btn-info btn-block" id="additionalInfoButton">Dodatkowe informacje &#x21d3;</button>
-    </form>
+        <button class="btn btn-info btn-block mt-2" id="additionalInfoButton">Dodatkowe informacje &#x21d3;</button>
 
-    <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary mb-5 btn-lg">Kolejny krok &#x21d2;</button>
-    </div>
+        <div class="d-flex justify-content-center mt-4">
+            <button type="submit" class="btn btn-primary mb-5 btn-lg">Kolejny krok &#x21d2;</button>
+        </div>
+    </form>
+@endsection
+
+@section('js')
+    <script src="js/main.js"></script>
 @endsection

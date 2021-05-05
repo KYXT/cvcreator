@@ -15,12 +15,23 @@ header{
     padding: 20px;
 }
 
-header > h3{
+header > h3, header > a {
     text-transform: uppercase;
     margin-left: 20%;
     color: whitesmoke;
     font-family: 'Signika', sans-serif;
     font-weight: 700;
+
+}
+
+header a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+header a:hover {
+    color: whitesmoke;
+    text-decoration: none;
 }
 
 .btn{

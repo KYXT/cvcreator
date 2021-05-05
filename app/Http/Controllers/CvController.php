@@ -11,4 +11,15 @@ class CvController extends Controller
         return view('index');
     }
 
+    public function store()
+    {
+        return redirect()
+            ->route('part');
+    }
+
+    public function part()
+    {
+        return view('part');
+    }
+
 }

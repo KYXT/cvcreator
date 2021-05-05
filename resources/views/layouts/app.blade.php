@@ -16,7 +16,6 @@
     <script src="node_modules/dropify/dist/js/dropify.js"></script>
     <link rel="stylesheet" href="node_modules/dropify/dist/css/dropify.css">
     <link rel="stylesheet" href="node_modules/dropify/dist/fonts/">
-    <script src="js/main.js"></script>
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -28,7 +27,7 @@
 <body>
 
 <header>
-    <h3>creator cv</h3>
+    <h3><a href="{{ route('index') }}">creator cv</a></h3>
 </header>
 
     <div class="content">
@@ -59,5 +58,7 @@
 @yield('content')
 
     </div>
+
+@yield('js')
 </body>
 </html>
