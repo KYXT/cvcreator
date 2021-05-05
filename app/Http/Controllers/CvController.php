@@ -12,7 +12,15 @@ class CvController extends Controller
 
     public function index()
     {
-        return view('index');
+        $data = [];
+
+        if (Cache::has($this->firstPart)) {
+            $data = Cache::get($this->firstPart);
+        }
+
+        return view('index', [
+            'data' => $data
+        ]);
     }
 
     public function store(IndexRequest $request)
