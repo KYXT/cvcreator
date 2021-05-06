@@ -530,7 +530,7 @@ let languages_element = `
                     <div class="col">
                         <div class="form-group">
                             <label>Poziom</label>
-                            <select name="langDeg[][]" class="custom-select" id="input-level" title="Wybierz język">
+                            <select name="langDeg[]" class="custom-select" id="input-level" title="Wybierz język">
                                 <option disabled selected>Wybierz</option>
                                 <option value="A1">A1</option>
                                 <option value="A2">A2</option>
@@ -575,7 +575,7 @@ let skills_element = `
     <div class="col">
         <div class="form-group">
             <label>Poziom</label>
-            <select class="custom-select" id="input-level" name="skillDeg[][]">
+            <select class="custom-select" id="input-level" name="skillDeg[]">
                 <option disabled selected>Wybierz poziom</option>
                 <option value="Zaawansowany">Zaawansowany</option>
                 <option value="Doświadczony">Doświadczony</option>

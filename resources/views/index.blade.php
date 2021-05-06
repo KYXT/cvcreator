@@ -8,7 +8,7 @@
 
         <div class="row">
             <div class="col-3">
-                <input type="file" class="dropify" data-height="150" data-allowed-file-extensions="png jpg jpeg" name="image">
+                <input type="file" class="dropify" data-height="150" data-allowed-file-extensions="png jpg jpeg" name="image" data-default-file="{{ $data['image'] ?? '' }}">
             </div>
             <div class="col-lg">
                 <div class="form-group">
@@ -58,7 +58,6 @@
         </div>
 
         <div id="additional-informations" class="slider">
-
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -127,7 +126,7 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label>LinkedIn</label>

@@ -23,7 +23,7 @@ class Uploader
         $name = Str::random(10) . time() . '.' . $file->getClientOriginalExtension();
 
         $image = Image::make($file->getRealPath());
-        $canvas = Image::canvas(420, 350, '#000');
+        $canvas = Image::canvas(420, 350, '#FFFFFF');
         $image->resize(420, 350, function ($constraint) {
             $constraint->aspectRatio();
         });

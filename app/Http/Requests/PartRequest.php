@@ -52,13 +52,11 @@ class PartRequest extends FormRequest
 
             'langName[]'    => 'nullable|array',
             'langName.*'    => 'nullable|string|min:2|max:250',
-            'langDeg[][]'   => 'nullable|array',
             'langDeg[]'     => 'nullable|array',
             'langDeg.*'     => 'nullable|string|in:A1,A2,B1,B2,C1,C2',
 
             'skillName[]'    => 'nullable|array',
             'skillName.*'    => 'nullable|string|min:2|max:250',
-            'skillDeg[][]'   => 'nullable|array',
             'skillDeg[]'     => 'nullable|array',
             'skillDeg.*'     => 'nullable|string|in:Zaawansowany,Doświadczony,Wprawiony,Początkujący,Nowicjusz',
 

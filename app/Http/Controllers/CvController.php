@@ -6,6 +6,7 @@ use App\Http\Helpers\Uploader;
 use App\Http\Requests\IndexRequest;
 use App\Http\Requests\PartRequest;
 use Illuminate\Support\Facades\Cache;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class CvController extends Controller
 {
@@ -34,7 +35,12 @@ class CvController extends Controller
         }
 
         if (Cache::has($this->firstPart)) {
+            $cache['image'] = Cache::get($this->firstPart)['image'];
             Cache::forget($this->firstPart);
+        }
+
+        if (!isset($data['image']) && isset($cache['image'])) {
+            $data['image'] = $cache['image'];
         }
 
         Cache::put($this->firstPart, $data, 60*60*6);
@@ -57,7 +63,23 @@ class CvController extends Controller
     {
         $data = $request->validated();
 
-        dd($data);
-    }
+        if (Cache::has($this->secondPart)) {
+            Cache::forget($this->secondPart);
+        }
 
+        Cache::put($this->secondPart, $data, 60*60*6);
+
+        return view('cv', [
+            'firstPart'     => Cache::get($this->firstPart),
+            'secondPart'    => Cache::get($this->secondPart)
+        ]);
+
+        $pdf = PDF::loadView('cv', [
+            'firstPart'     => Cache::get($this->firstPart),
+            'secondPart'    => Cache::get($this->secondPart)
+        ]);
+
+        return $pdf->download('cv.pdf');
+
+    }
 }
