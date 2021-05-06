@@ -68,17 +68,11 @@ class CvController extends Controller
 
         Cache::put($this->secondPart, $data, 60*60*6);
 
-        return view('cv', [
-            'firstPart'     => Cache::get($this->firstPart),
-            'secondPart'    => Cache::get($this->secondPart)
-        ]);
-
         $pdf = PDF::loadView('cv', [
             'firstPart'     => Cache::get($this->firstPart),
             'secondPart'    => Cache::get($this->secondPart)
         ]);
 
         return $pdf->download('cv.pdf');
-
     }
 }

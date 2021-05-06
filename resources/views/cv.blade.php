@@ -1,22 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-
-    <title>Jonathan Doe | Web Designer, Director | name@yourdomain.com</title>
+    <title>{{ $firstPart['name'] ?? '' }} {{ $firstPart['surname'] ?? '' }}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" />
     <link rel="stylesheet" type="text/css" href="resume.css" media="all" />
-
 </head>
 <body>
 
 <div id="doc2" class="yui-t7">
     <div id="inner">
-
         <div id="hd">
             <div class="yui-gc">
                 <div class="yui-u first">
@@ -73,25 +66,65 @@
                     @endif
 
                     @if (isset($secondPart['workName']))
-                    <div class="yui-gf">
-                        <div class="yui-u first">
-                            <h2>Doświadczenie</h2>
-                        </div>
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2>Doświadczenie</h2>
+                            </div>
 
-                        <div class="yui-u">
-                            <?php $i = -1; ?>
-                            @foreach($secondPart['workName'] as $work)
-                                <?php $i++ ?>
-                                <div class="job">
-                                    <h2>{{ $secondPart['workEmp'][$i] ?? '' }}</h2>
-                                    <h3>{{ $work ?? '' }}</h3>
-                                    <h3>Miasto: <b>{{ $secondPart['workCity'][$i] ?? ''  }}</b></h3>
-                                    <h4><b>{{ $secondPart['workStart'][$i] ?? '' }}</b> — <b>{{ $secondPart['workEnd'][$i] ?? '' }}</b></h4>
-                                    <p>{{ strip_tags($secondPart['workAbout'][$i]) ?? '' }}</p>
-                                </div>
-                            @endforeach
+                            <div class="yui-u">
+                                <?php $i = -1; ?>
+                                @foreach($secondPart['workName'] as $work)
+                                    <?php $i++ ?>
+                                    <div class="job">
+                                        <h2>{{ $secondPart['workEmp'][$i] ?? '' }}</h2>
+                                        <h3>{{ $work ?? '' }}</h3>
+                                        <h3>Miasto: <b>{{ $secondPart['workCity'][$i] ?? ''  }}</b></h3>
+                                        <h4><b>{{ $secondPart['workStart'][$i] ?? '' }}</b> — <b>{{ $secondPart['workEnd'][$i] ?? '' }}</b></h4>
+                                        <p>{{ strip_tags($secondPart['workAbout'][$i]) ?? '' }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
+
+                    @if (isset($secondPart['eduDeg']))
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2>Wykształcenie i kwalifikacje</h2>
+                            </div>
+
+                            <div class="yui-u">
+                                <?php $i = -1; ?>
+                                @foreach($secondPart['eduDeg'] as $edu)
+                                    <?php $i++ ?>
+                                    <div class="job">
+                                        <h2>{{ $secondPart['eduSchool'][$i] ?? '' }}</h2>
+                                        <h3>{{ $edu ?? '' }}</h3>
+                                        <h3>Miasto: <b>{{ $secondPart['eduCity'][$i] ?? ''  }}</b></h3>
+                                        <h4><b>{{ $secondPart['eduStart'][$i] ?? '' }}</b> — <b>{{ $secondPart['eduEnd'][$i] ?? '' }}</b></h4>
+                                        <p>{{ strip_tags($secondPart['eduAbout'][$i]) ?? '' }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (isset($secondPart['langName']))
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2>Języki</h2>
+                            </div>
+                            <div class="yui-u">
+                                <?php $i = -1; ?>
+                                @foreach($secondPart['langName'] as $lang)
+                                    <?php $i++ ?>
+                                    <div class="talent">
+                                        <h2>{{ $lang ?? '' }}</h2>
+                                        <p>{{ $secondPart['langDeg'][$i] ?? '' }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     @endif
 
                     @if (isset($secondPart['skillName']))
@@ -112,48 +145,26 @@
                         </div>
                     @endif
 
-                    <div class="yui-gf">
-                        <div class="yui-u first">
-                            <h2>Technical</h2>
+                    @if (isset($secondPart['hobbyName']))
+                        <div class="yui-gf">
+                            <div class="yui-u first">
+                                <h2>Hobby i zainteresowania</h2>
+                            </div>
+                            <div class="yui-u">
+                                <?php $i = -1; ?>
+                                @foreach($secondPart['hobbyName'] as $hobby)
+                                    <?php $i++ ?>
+                                    <div class="talent">
+                                        <h2>{{ $hobby ?? '' }}</h2>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                        <div class="yui-u">
-                            <ul class="talent">
-                                <li>XHTML</li>
-                                <li>CSS</li>
-                                <li class="last">Javascript</li>
-                            </ul>
+                    @endif
 
-                            <ul class="talent">
-                                <li>Jquery</li>
-                                <li>PHP</li>
-                                <li class="last">CVS / Subversion</li>
-                            </ul>
-
-                            <ul class="talent">
-                                <li>OS X</li>
-                                <li>Windows XP/Vista</li>
-                                <li class="last">Linux</li>
-                            </ul>
-                        </div>
-                    </div><!--// .yui-gf-->
-
-
-
-
-                    <div class="yui-gf last">
-                        <div class="yui-u first">
-                            <h2>Education</h2>
-                        </div>
-                        <div class="yui-u">
-                            <h2>Indiana University - Bloomington, Indiana</h2>
-                            <h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>
-                        </div>
-                    </div><!--// .yui-gf -->
-
-
-                </div><!--// .yui-b -->
-            </div><!--// yui-main -->
-        </div><!--// bd -->
+                </div>
+            </div>
+        </div>
 
         <div id="ft">
             <p>{{ $firstPart['name'] ?? '' }} {{ $firstPart['surname'] ?? '' }} &mdash; <a href="mailto:{{ $firstPart['email'] ?? ' ' }}">{{ $firstPart['email'] ?? ' ' }}</a> @if (isset($firstPart['phone'])) &mdash;  {{ $firstPart['phone'] ?? ' ' }}@endif</p>
