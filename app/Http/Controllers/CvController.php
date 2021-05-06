@@ -62,17 +62,16 @@ class CvController extends Controller
     public function storePart(PartRequest $request)
     {
         $data = $request->validated();
-
         if (Cache::has($this->secondPart)) {
             Cache::forget($this->secondPart);
         }
 
         Cache::put($this->secondPart, $data, 60*60*6);
 
-//        return view('cv', [
-//            'firstPart'     => Cache::get($this->firstPart),
-//            'secondPart'    => Cache::get($this->secondPart)
-//        ]);
+        return view('cv', [
+            'firstPart'     => Cache::get($this->firstPart),
+            'secondPart'    => Cache::get($this->secondPart)
+        ]);
 
         $pdf = PDF::loadView('cv', [
             'firstPart'     => Cache::get($this->firstPart),
