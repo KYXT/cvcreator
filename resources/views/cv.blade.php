@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="yui-u">
-                    @if (isset($firstPart['image']))<img width="250" src="{{ $firstPart['image'] }}">@endif
+                    @if (isset($firstPart['image']))<img width="250px" src="{{ public_path($firstPart['image']) }}" alt="cv image">@endif
                     <div class="contact-info text-right">
                         <h3><a href="mailto:{{ $firstPart['email'] ?? ' ' }}">{{ $firstPart['email'] ?? ' ' }}</a></h3>
                         @if (isset($firstPart['phone']))<h3> {{ $firstPart['phone'] ?? ' ' }}</h3>@endif
