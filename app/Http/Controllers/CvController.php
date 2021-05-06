@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\Uploader;
 use App\Http\Requests\IndexRequest;
+use App\Http\Requests\PartRequest;
 use Illuminate\Support\Facades\Cache;
 
 class CvController extends Controller
@@ -27,11 +29,15 @@ class CvController extends Controller
     {
         $data = $request->validated();
 
+        if (isset($data['image'])) {
+            $data['image'] = Uploader::uploadImage($data['image']);
+        }
+
         if (Cache::has($this->firstPart)) {
             Cache::forget($this->firstPart);
         }
 
-        Cache::put($this->firstPart, $data, 60*60*6); // 10 Minutes
+        Cache::put($this->firstPart, $data, 60*60*6);
 
         return redirect()
             ->route('part');
@@ -45,6 +51,13 @@ class CvController extends Controller
         }
 
         return view('part');
+    }
+
+    public function storePart(PartRequest $request)
+    {
+        $data = $request->validated();
+
+        dd($data);
     }
 
 }

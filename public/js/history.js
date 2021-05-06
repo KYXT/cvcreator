@@ -1,15 +1,14 @@
-var jobs = [];
-var educations = [];
-var languages = [];
-var skills = [];
-var hobbies = [];
+let jobs = [];
+let educations = [];
+let languages = [];
+let skills = [];
+let hobbies = [];
 
 window.onload = function () {
 
     prepareEditor(document);
 
-
-    var historyForms = document.getElementsByClassName("history-form");
+    let historyForms = document.getElementsByClassName("history-form");
 
     for (let historyForm of historyForms) {
 
@@ -84,26 +83,14 @@ window.onload = function () {
 
 function addWorkExperticeTemplate(historyForm) {
 
-    var workElem = document.createElement('div');
+    let workElem = document.createElement('div');
     workElem.id = "hidden-content";
     workElem.innerHTML = work_element;
     historyForm.querySelector("#form-content").insertBefore(workElem, historyForm.querySelector('#new-position-add-button'));
 
     prepareEditor(workElem);
 
-    var saveButton = workElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-
-        let job = {};
-        job.id = jobs.length;
-        job.data = workElem.cloneNode(true);
-
-        jobs.push(job);
-
-        addMinimalizeJobExp(historyForm, job.id);
-    });
-
-    var deleteButton = workElem.querySelector("#delete-button");
+    let deleteButton = workElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         workElem.remove();
     });
@@ -114,12 +101,12 @@ function addMinimalizeJobExp(historyForm, id) {
 
     let index = jobs.findIndex(j => j.id === id);
 
-    var minimalJob = document.createElement('div');
+    let minimalJob = document.createElement('div');
     minimalJob.id = "minimalized_content";
 
     minimalJob.innerHTML = minimilized_content_work;
 
-    var tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
+    let tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
 
     minimalJob.querySelector('#job-title').innerHTML = tmp.querySelector("#input-job-title").value;
     minimalJob.querySelector('#start-date').innerHTML = tmp.querySelector("#input-start-date").value;
@@ -143,17 +130,10 @@ function addMinimalizeJobExp(historyForm, id) {
 function expandMinimalizeJobExp(historyForm, id) {
 
     let index = jobs.findIndex(j => j.id === id);
-    var workElem = jobs[index].data;
+    let workElem = jobs[index].data;
     historyForm.querySelector("#form-content").insertBefore(workElem, historyForm.querySelector('#form-content').childNodes[index + 1]);
 
-    var saveButton = workElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-        let index = jobs.findIndex(j => j.id === id);
-        jobs[index].data = workElem.cloneNode(true);
-        addMinimalizeJobExp(historyForm, id);
-    });
-
-    var deleteButton = workElem.querySelector("#delete-button");
+    let deleteButton = workElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         jobs.splice(index, 1);
         workElem.remove();
@@ -164,26 +144,14 @@ function expandMinimalizeJobExp(historyForm, id) {
 
 function addEducationTemplate(historyForm) {
 
-    var eduElem = document.createElement('div');
+    let eduElem = document.createElement('div');
     eduElem.id = "hidden-content";
     eduElem.innerHTML = education_element;
     historyForm.querySelector("#form-content").insertBefore(eduElem, historyForm.querySelector('#new-position-add-button'));
 
     prepareEditor(eduElem);
 
-    var saveButton = eduElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-
-        let education = {};
-        education.id = educations.length;
-        education.data = eduElem.cloneNode(true);
-
-        educations.push(education);
-
-        addMinimalizeEdu(historyForm, education.id);
-    });
-
-    var deleteButton = eduElem.querySelector("#delete-button");
+    let deleteButton = eduElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         eduElem.remove();
     });
@@ -194,12 +162,12 @@ function addMinimalizeEdu(historyForm, id) {
 
     let index = educations.findIndex(e => e.id === id);
 
-    var minimalEdu = document.createElement('div');
+    let minimalEdu = document.createElement('div');
     minimalEdu.id = "minimalized_content";
 
     minimalEdu.innerHTML = minimilized_content_education;
 
-    var tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
+    let tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
 
     minimalEdu.querySelector('#edu-title').innerHTML = tmp.querySelector("#input-edu-title").value;
     minimalEdu.querySelector('#start-date').innerHTML = tmp.querySelector("#input-start-date").value;
@@ -223,17 +191,10 @@ function addMinimalizeEdu(historyForm, id) {
 function expandMinimalizeEdu(historyForm, id) {
 
     let index = educations.findIndex(e => e.id === id);
-    var eduElem = educations[index].data;
+    let eduElem = educations[index].data;
     historyForm.querySelector("#form-content").insertBefore(eduElem, historyForm.querySelector('#form-content').childNodes[index + 1]);
 
-    var saveButton = eduElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-        let index = educations.findIndex(e => e.id === id);
-        educations[index].data = eduElem.cloneNode(true);
-        addMinimalizeEdu(historyForm, id);
-    });
-
-    var deleteButton = eduElem.querySelector("#delete-button");
+    let deleteButton = eduElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         educations.splice(index, 1);
         eduElem.remove();
@@ -243,7 +204,7 @@ function expandMinimalizeEdu(historyForm, id) {
 
 function prepareEditor(historyForm) {
 
-    var editors = historyForm.getElementsByClassName("editor");
+    let editors = historyForm.getElementsByClassName("editor");
     for (let editor of editors) {
         ClassicEditor
             .create(editor, {
@@ -258,24 +219,12 @@ function prepareEditor(historyForm) {
 
 function addLanguagesTemplate(historyForm) {
 
-    var langElem = document.createElement('div');
+    let langElem = document.createElement('div');
     langElem.id = "hidden-content";
     langElem.innerHTML = languages_element;
     historyForm.querySelector("#form-content").insertBefore(langElem, historyForm.querySelector('#new-position-add-button'));
 
-    var saveButton = langElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-
-        let language = {};
-        language.id = languages.length;
-        language.data = langElem.cloneNode(true);
-
-        languages.push(language);
-
-        addMinimalizeLang(historyForm, language.id);
-    });
-
-    var deleteButton = langElem.querySelector("#delete-button");
+    let deleteButton = langElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         langElem.remove();
     });
@@ -286,12 +235,12 @@ function addMinimalizeLang(historyForm, id) {
 
     let index = languages.findIndex(l => l.id === id);
 
-    var minimalLang = document.createElement('div');
+    let minimalLang = document.createElement('div');
     minimalLang.id = "minimalized_content";
 
     minimalLang.innerHTML = minimilized_content_languages;
 
-    var tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
+    let tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
 
     minimalLang.querySelector('#lang-title').innerHTML = tmp.querySelector("#input-lang-title").value;
     minimalLang.querySelector('#level').innerHTML = tmp.querySelector("#input-level").value;
@@ -315,17 +264,10 @@ function addMinimalizeLang(historyForm, id) {
 function expandMinimalizeLang(historyForm, id) {
 
     let index = languages.findIndex(l => l.id === id);
-    var langElem = languages[index].data;
+    let langElem = languages[index].data;
     historyForm.querySelector("#form-content").insertBefore(langElem, historyForm.querySelector('#form-content').childNodes[index + 1]);
 
-    var saveButton = langElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-        let index = languages.findIndex(l => l.id === id);
-        languages[index].data = langElem.cloneNode(true);
-        addMinimalizeLang(historyForm, id);
-    });
-
-    var deleteButton = langElem.querySelector("#delete-button");
+    let deleteButton = langElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         languages.splice(index, 1);
         langElem.remove();
@@ -335,24 +277,12 @@ function expandMinimalizeLang(historyForm, id) {
 
 function addSkillsTemplate(historyForm) {
 
-    var skillElem = document.createElement('div');
+    let skillElem = document.createElement('div');
     skillElem.id = "hidden-content";
     skillElem.innerHTML = skills_element;
     historyForm.querySelector("#form-content").insertBefore(skillElem, historyForm.querySelector('#new-position-add-button'));
 
-    var saveButton = skillElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-
-        let skill = {};
-        skill.id = skills.length;
-        skill.data = skillElem.cloneNode(true);
-
-        skills.push(skill);
-
-        addMinimalizeSkill(historyForm, skill.id);
-    });
-
-    var deleteButton = skillElem.querySelector("#delete-button");
+    let deleteButton = skillElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         skillElem.remove();
     });
@@ -363,12 +293,12 @@ function addMinimalizeSkill(historyForm, id) {
 
     let index = skills.findIndex(s => s.id === id);
 
-    var minimalSkill = document.createElement('div');
+    let minimalSkill = document.createElement('div');
     minimalSkill.id = "minimalized_content";
 
     minimalSkill.innerHTML = minimilized_content_skills;
 
-    var tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
+    let tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
 
     minimalSkill.querySelector('#skill-title').innerHTML = tmp.querySelector("#input-skill-title").value;
     minimalSkill.querySelector('#level').innerHTML = tmp.querySelector("#input-level").value;
@@ -392,17 +322,10 @@ function addMinimalizeSkill(historyForm, id) {
 function expandMinimalizeSkill(historyForm, id) {
 
     let index = skills.findIndex(s => s.id === id);
-    var skillElem = skills[index].data;
+    let skillElem = skills[index].data;
     historyForm.querySelector("#form-content").insertBefore(skillElem, historyForm.querySelector('#form-content').childNodes[index + 1]);
 
-    var saveButton = skillElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-        let index = skills.findIndex(s => s.id === id);
-        skills[index].data = skillElem.cloneNode(true);
-        addMinimalizeSkill(historyForm, id);
-    });
-
-    var deleteButton = skillElem.querySelector("#delete-button");
+    let deleteButton = skillElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         skills.splice(index, 1);
         skillElem.remove();
@@ -413,24 +336,12 @@ function expandMinimalizeSkill(historyForm, id) {
 
 function addHobbiesTemplate(historyForm) {
 
-    var hobbyElem = document.createElement('div');
+    let hobbyElem = document.createElement('div');
     hobbyElem.id = "hidden-content";
     hobbyElem.innerHTML = hobbies_element;
     historyForm.querySelector("#form-content").insertBefore(hobbyElem, historyForm.querySelector('#new-position-add-button'));
 
-    var saveButton = hobbyElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-
-        let hobby = {};
-        hobby.id = hobbies.length;
-        hobby.data = hobbyElem.cloneNode(true);
-
-        hobbies.push(hobby);
-
-        addMinimalizeHobby(historyForm, hobby.id);
-    });
-
-    var deleteButton = hobbyElem.querySelector("#delete-button");
+    let deleteButton = hobbyElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         hobbyElem.remove();
     });
@@ -441,12 +352,12 @@ function addMinimalizeHobby(historyForm, id) {
 
     let index = hobbies.findIndex(h => h.id === id);
 
-    var minimalHobby = document.createElement('div');
+    let minimalHobby = document.createElement('div');
     minimalHobby.id = "minimalized_content";
 
     minimalHobby.innerHTML = minimilized_content_hobbies;
 
-    var tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
+    let tmp = historyForm.querySelector("#form-content").childNodes[index + 1];
 
     minimalHobby.querySelector('#hobby-title').innerHTML = tmp.querySelector("#input-hobby-title").value;
 
@@ -469,17 +380,10 @@ function addMinimalizeHobby(historyForm, id) {
 function expandMinimalizeHobby(historyForm, id) {
 
     let index = hobbies.findIndex(h => h.id === id);
-    var HobbyElem = hobbies[index].data;
+    let HobbyElem = hobbies[index].data;
     historyForm.querySelector("#form-content").insertBefore(HobbyElem, historyForm.querySelector('#form-content').childNodes[index + 1]);
 
-    var saveButton = HobbyElem.querySelector("#save-button");
-    saveButton.addEventListener("click", () => {
-        let index = hobbies.findIndex(h => h.id === id);
-        hobbies[index].data = HobbyElem.cloneNode(true);
-        addMinimalizeHobby(historyForm, id);
-    });
-
-    var deleteButton = HobbyElem.querySelector("#delete-button");
+    let deleteButton = HobbyElem.querySelector("#delete-button");
     deleteButton.addEventListener("click", () => {
         hobbies.splice(index, 1);
         HobbyElem.remove();
@@ -488,19 +392,19 @@ function expandMinimalizeHobby(historyForm, id) {
 }
 
 
-var work_element = `
+let work_element = `
 <hr>
 <div class="row">
     <div class="col">
         <div class="form-group">
             <label>Nazwa zawodu</label>
-            <input type="text" placeholder="np. kierownik sprzedaży" class="form-control" id="input-job-title">
+            <input type="text" placeholder="np. kierownik sprzedaży" name="workName[]" class="form-control" id="input-job-title">
         </div>
     </div>
     <div class="col">
         <div class="form-group">
             <label>Miasto / miejscowość</label>
-            <input type="text" autocomplete="off" name="meta.city" placeholder="np. Warszawa"
+            <input type="text" autocomplete="off" name="workCity[]" placeholder="np. Warszawa"
                 class="form-control">
         </div>
     </div>
@@ -508,38 +412,36 @@ var work_element = `
 
 <div class="form-group">
     <label>Pracodawca</label>
-    <input type="text" placeholder="np. PwC" class="form-control">
+    <input type="text" placeholder="np. PwC" name="workEmp[]" class="form-control">
 </div>
 
 <div class="row">
     <div class="col">
         <div class="form-group">
             <label>Data rozpoczęcia</label>
-            <input type="date" autocomplete="off" class="form-control" id="input-start-date">
+            <input type="date" autocomplete="off" name="workStart[]" class="form-control" id="input-start-date">
         </div>
     </div>
     <div class="col">
         <div class="form-group">
             <label>Data zakończenia</label>
-            <input type="date" class="form-control" id="input-end-date">
+            <input type="date" name="workEnd[]" class="form-control" id="input-end-date">
         </div>
     </div>
 </div>
 
 <div class="form-group">
     <label>Opis</label>
-    <div id="editor" class="editor"></div>
-
+    <textarea id="editor" class="editor" name="workAbout[]"></textarea>
 </div>
 
 <div class="form-group text-right">
 <button type="button" class="btn btn-danger" id="delete-button">Usuń</button>
-<button type="button" class="btn btn-success" id="save-button">Zapisz</button>
 </div>
 
 `;
 
-var minimilized_content_work = `
+let minimilized_content_work = `
 <hr>
 <div class="row align-items-center">
     <div class="col-10 ml-3">
@@ -554,19 +456,19 @@ var minimilized_content_work = `
 </div>
 `;
 
-var education_element = `
+let education_element = `
 <hr>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label>Stopień / poziom</label>
-                            <input type="text" placeholder="np. licencjat" class="form-control" id="input-edu-title">
+                            <input type="text" placeholder="np. licencjat" name="eduDeg[]" class="form-control" id="input-edu-title">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label>Miasto / miejscowość</label>
-                            <input type="text" autocomplete="off" name="meta.city" placeholder="np. Warszawa"
+                            <input type="text" autocomplete="off" name="eduCity[]" placeholder="np. Warszawa"
                                 class="form-control">
                         </div>
                     </div>
@@ -574,35 +476,34 @@ var education_element = `
 
                 <div class="form-group">
                     <label>Szkoła / uczelnia</label>
-                    <input type="text" placeholder="np. Politechnika Białostocka" class="form-control">
+                    <input type="text" placeholder="np. Politechnika Białostocka" name="eduSchool[]" class="form-control">
                 </div>
 
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label>Data rozpoczęcia</label>
-                            <input type="date" autocomplete="off" class="form-control" id="input-start-date">
+                            <input type="date" autocomplete="off" name="eduStart[]" class="form-control" id="input-start-date">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label>Data zakończenia</label>
-                            <input type="date" class="form-control" id="input-end-date">
+                            <input type="date" name="eduEnd[]" class="form-control" id="input-end-date">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Opis</label>
-                    <div id="editor" class="editor"></div>
+                    <textarea id="editor" class="editor" name="eduAbout[]"></textarea>
                 </div>
                 <div class="form-group text-right">
 <button type="button" class="btn btn-danger" id="delete-button">Usuń</button>
-<button type="button" class="btn btn-success" id="save-button">Zapisz</button>
 </div>
 `;
 
-var minimilized_content_education = `
+let minimilized_content_education = `
 <hr>
 <div class="row align-items-center">
     <div class="col-10 ml-3">
@@ -617,43 +518,37 @@ var minimilized_content_education = `
 </div>
 `;
 
-var languages_element = `
+let languages_element = `
 <hr>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label>Język</label>
-                            <input type="text" placeholder="np. hiszpański" class="form-control" id="input-lang-title">
+                            <input type="text" placeholder="np. hiszpański" name="langName[]" class="form-control" id="input-lang-title">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label>Poziom</label>
-                            <select class="custom-select" id="input-level">
-                                <option>Wybierz</option>
-                                <option>Język ojczysty / Poziom osoby władającej językiem ojczystym</option>
-                                <option>Biegła znajomość w mowie i piśmie</option>
-                                <option>Bardzo dobra znajomość</option>
-                                <option>Wiedza praktyczna na dobrym poziomie</option>
-                                <option>Wiedza praktyczna</option>
-                                <option>A1</option>
-                                <option>A2</option>
-                                <option>B1</option>
-                                <option>B2</option>
-                                <option>C1</option>
-                                <option>C2</option>
+                            <select name="langDeg[][]" class="custom-select" id="input-level" title="Wybierz język">
+                                <option disabled selected>Wybierz</option>
+                                <option value="A1">A1</option>
+                                <option value="A2">A2</option>
+                                <option value="B1">B1</option>
+                                <option value="B2">B2</option>
+                                <option value="C1">C1</option>
+                                <option value="C2">C2</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="form-group text-right">
                 <button type="button" class="btn btn-danger" id="delete-button">Usuń</button>
-                <button type="button" class="btn btn-success" id="save-button">Zapisz</button>
                 </div>
 `;
 
 
-var minimilized_content_languages = `
+let minimilized_content_languages = `
 <hr>
 <div class="row align-items-center">
     <div class="col-10 ml-3">
@@ -668,36 +563,35 @@ var minimilized_content_languages = `
 </div>
 `;
 
-var skills_element = `
+let skills_element = `
 <hr>
 <div class="row">
     <div class="col">
         <div class="form-group">
             <label>Umiejętność</label>
-            <input type="text" placeholder="np. obsługa Microsoft Word" class="form-control" id="input-skill-title">
+            <input type="text" placeholder="np. obsługa Microsoft Word" name="skillName[]" class="form-control" id="input-skill-title">
         </div>
     </div>
     <div class="col">
         <div class="form-group">
             <label>Poziom</label>
-            <select class="custom-select" id="input-level">
-                <option>Wybierz poziom</option>
-                <option>Zaawansowany</option>
-                <option>Doświadczony</option>
-                <option>Wprawiony</option>
-                <option>Początkujący</option>
-                <option>Nowicjusz</option>
+            <select class="custom-select" id="input-level" name="skillDeg[][]">
+                <option disabled selected>Wybierz poziom</option>
+                <option value="Zaawansowany">Zaawansowany</option>
+                <option value="Doświadczony">Doświadczony</option>
+                <option value="Wprawiony">Wprawiony</option>
+                <option value="Początkujący">Początkujący</option>
+                <option value="Nowicjusz">Nowicjusz</option>
             </select>
         </div>
     </div>
 </div>
 <div class="form-group text-right">
 <button type="button" class="btn btn-danger" id="delete-button">Usuń</button>
-<button type="button" class="btn btn-success" id="save-button">Zapisz</button>
 </div>
 `;
 
-var minimilized_content_skills = `
+let minimilized_content_skills = `
 <hr>
 <div class="row align-items-center">
     <div class="col-10 ml-3">
@@ -712,20 +606,19 @@ var minimilized_content_skills = `
 </div>
 `;
 
-var hobbies_element = `
+let hobbies_element = `
 <hr>
 
 <div class="form-group">
     <label>Hobby</label>
-    <input type="text" placeholder="np. wędrówki" class="form-control" id="input-hobby-title">
+    <input type="text" placeholder="np. wędrówki" name="hobbyName[]" class="form-control" id="input-hobby-title">
 </div>
 <div class="form-group text-right">
 <button type="button" class="btn btn-danger" id="delete-button">Usuń</button>
-<button type="button" class="btn btn-success" id="save-button">Zapisz</button>
 </div>
 `;
 
-var minimilized_content_hobbies = `
+let minimilized_content_hobbies = `
 <hr>
 <div class="row align-items-center">
     <div class="col-10 ml-3">
