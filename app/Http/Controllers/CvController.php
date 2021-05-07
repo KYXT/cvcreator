@@ -13,6 +13,9 @@ class CvController extends Controller
     protected $firstPart = 'firstPart';
     protected $secondPart = 'secondPart';
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $data = [];
@@ -26,6 +29,10 @@ class CvController extends Controller
         ]);
     }
 
+    /**
+     * @param IndexRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(IndexRequest $request)
     {
         $data = $request->validated();
@@ -49,6 +56,9 @@ class CvController extends Controller
             ->route('part');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\View|
+     */
     public function part()
     {
         if (!Cache::has($this->firstPart)) {
@@ -59,6 +69,10 @@ class CvController extends Controller
         return view('part');
     }
 
+    /**
+     * @param PartRequest $request
+     * @return mixed
+     */
     public function storePart(PartRequest $request)
     {
         $data = $request->validated();
