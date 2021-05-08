@@ -6,6 +6,7 @@ use App\Http\Helpers\Uploader;
 use App\Http\Requests\IndexRequest;
 use App\Http\Requests\PartRequest;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class CvController extends Controller
@@ -18,10 +19,10 @@ class CvController extends Controller
      */
     public function index()
     {
-        $data = [];
 
-        if (Cache::has($this->firstPart)) {
-            $data = Cache::get($this->firstPart);
+        $data = [];
+        if (Session::has($this->firstPart)) {
+            $data = Session::get($this->firstPart);
         }
 
         return view('index', [
@@ -41,16 +42,21 @@ class CvController extends Controller
             $data['image'] = Uploader::uploadImage($data['image']);
         }
 
-        if (Cache::has($this->firstPart)) {
-            $cache['image'] = Cache::get($this->firstPart)['image'];
-            Cache::forget($this->firstPart);
+        $sessionImage = null;
+        if (Session::has($this->firstPart)) {
+            $sessionImage = Session::get($this->firstPart);
+            if (isset($sessionImage['image'])) {
+                $sessionImage = $sessionImage['image'];
+            }
+            Session::forget($this->firstPart);
         }
 
-        if (!isset($data['image']) && isset($cache['image'])) {
-            $data['image'] = $cache['image'];
+        if (!isset($data['image']) && ($sessionImage != null)) {
+            $data['image'] = $sessionImage;
         }
 
-        Cache::put($this->firstPart, $data, 60*60*6);
+        Session::put($this->firstPart, $data);
+
 
         return redirect()
             ->route('part');
@@ -61,7 +67,7 @@ class CvController extends Controller
      */
     public function part()
     {
-        if (!Cache::has($this->firstPart)) {
+        if (!Session::has($this->firstPart)) {
             return redirect()
                 ->route('index');
         }
@@ -76,15 +82,15 @@ class CvController extends Controller
     public function storePart(PartRequest $request)
     {
         $data = $request->validated();
-        if (Cache::has($this->secondPart)) {
-            Cache::forget($this->secondPart);
+        if (Session::has($this->secondPart)) {
+            Session::forget($this->secondPart);
         }
 
-        Cache::put($this->secondPart, $data, 60*60*6);
+        Session::put($this->secondPart, $data);
 
         $pdf = PDF::loadView('cv', [
-            'firstPart'     => Cache::get($this->firstPart),
-            'secondPart'    => Cache::get($this->secondPart)
+            'firstPart'     => Session::get($this->firstPart),
+            'secondPart'    => Session::get($this->secondPart)
         ]);
 
         return $pdf->download('cv.pdf');
