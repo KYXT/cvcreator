@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div id="doc2" class="yui-t7">
+<div id="doc2" class="yui-t7" style="width: 100%">
     <div id="inner">
         <div id="hd">
             <div class="yui-gc">
@@ -35,20 +35,22 @@
         <div id="bd">
             <div id="yui-main">
                 <div class="yui-b">
+                    @if (isset($firstPart['street']) || isset($firstPart['city']) || isset($firstPart['street']) || isset($firstPart['country']) || isset($firstPart['code']))
                     <div class="yui-gf">
                         <div class="yui-u first">
                             <h2>Adres</h2>
                         </div>
                         <div class="yui-u">
                             <p class="enlarge">
-                                {{ $firstPart['street'] ?? '' }}<br>
-                                <b>Miasto / miejscowość:</b> {{ $firstPart['city'] ?? '' }}<br>
-                                <b>Okręg:</b> {{ $firstPart['city'] ?? '' }}<br>
-                                <b>Miejsce urodzenia:</b> {{ $firstPart['country'] ?? '' }}<br>
-                                <b>Kod pocztowy:</b> {{ $firstPart['code'] ?? '' }}<br>
+                                @if (isset($firstPart['street'])) {{ $firstPart['street'] ?? '' }}<br>@endif
+                                @if (isset($firstPart['city']))<b>Miasto / miejscowość:</b> {{ $firstPart['city'] ?? '' }}<br>@endif
+                                @if (isset($firstPart['country']))<b>Okręg:</b> {{ $firstPart['country'] ?? '' }}<br>@endif
+                                @if (isset($firstPart['birthCity']))<b>Miejsce urodzenia:</b> {{ $firstPart['birthCity'] ?? '' }}<br>@endif
+                                @if (isset($firstPart['code']))<b>Kod pocztowy:</b> {{ $firstPart['code'] ?? '' }}<br>@endif
                             </p>
                         </div>
                     </div>
+                    @endif
 
                     @if (isset($firstPart['drive']))
                         <div class="yui-gf">
@@ -75,7 +77,7 @@
                                 <?php $i = -1; ?>
                                 @foreach($secondPart['workName'] as $work)
                                     <?php $i++ ?>
-                                    <div class="job">
+                                    <div class="job" @if ($i > 0) style="padding-top: 1em; border-top: 1px solid #ccc;" @endif>
                                         <h2>{{ $secondPart['workEmp'][$i] ?? '' }}</h2>
                                         <h3>{{ $work ?? '' }}</h3>
                                         <h3>Miasto: <b>{{ $secondPart['workCity'][$i] ?? ''  }}</b></h3>
@@ -97,7 +99,7 @@
                                 <?php $i = -1; ?>
                                 @foreach($secondPart['eduDeg'] as $edu)
                                     <?php $i++ ?>
-                                    <div class="job">
+                                    <div class="job" @if ($i > 0) style="padding-top: 1em; border-top: 1px solid #ccc;" @endif>
                                         <h2>{{ $secondPart['eduSchool'][$i] ?? '' }}</h2>
                                         <h3>{{ $edu ?? '' }}</h3>
                                         <h3>Miasto: <b>{{ $secondPart['eduCity'][$i] ?? ''  }}</b></h3>

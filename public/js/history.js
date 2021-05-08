@@ -22,35 +22,33 @@ window.onload = function () {
                     return;
                 }
 
-                switch (historyForm.id) {
-
-                    case "work_experience":
-                        if (jobs.length == 0) {
-                            addWorkExperticeTemplate(historyForm);
-                        }
-                        break;
-                    case "education":
-                        if (educations.length == 0) {
-                            addEducationTemplate(historyForm);
-                        }
-                        break;
-                    case "languages":
-                        if (languages.length == 0) {
-                            addLanguagesTemplate(historyForm);
-                        }
-                        break;
-                    case "skills":
-                        if(skills.length == 0){
-                            addSkillsTemplate(historyForm);
-                        }
-                        break;
-                    case "hobbies":
-                        if(hobbies.length == 0){
-                            addHobbiesTemplate(historyForm);
-                        }
-                        break;
-
-                }
+                // switch (historyForm.id) {
+                //     case "work_experience":
+                //         if (jobs.length == 0) {
+                //             addWorkExperticeTemplate(historyForm);
+                //         }
+                //         break;
+                //     case "education":
+                //         if (educations.length == 0) {
+                //             addEducationTemplate(historyForm);
+                //         }
+                //         break;
+                //     case "languages":
+                //         if (languages.length == 0) {
+                //             addLanguagesTemplate(historyForm);
+                //         }
+                //         break;
+                //     case "skills":
+                //         if(skills.length == 0){
+                //             addSkillsTemplate(historyForm);
+                //         }
+                //         break;
+                //     case "hobbies":
+                //         if(hobbies.length == 0){
+                //             addHobbiesTemplate(historyForm);
+                //         }
+                //         break;
+                // }
             }
 
         }, true);
@@ -398,34 +396,34 @@ let work_element = `
     <div class="col">
         <div class="form-group">
             <label>Nazwa zawodu</label>
-            <input type="text" placeholder="np. kierownik sprzedaży" name="workName[]" class="form-control" id="input-job-title">
+            <input type="text" placeholder="np. kierownik sprzedaży" name="workName[]" class="form-control" id="input-job-title" required>
         </div>
     </div>
     <div class="col">
         <div class="form-group">
             <label>Miasto / miejscowość</label>
             <input type="text" autocomplete="off" name="workCity[]" placeholder="np. Warszawa"
-                class="form-control">
+                class="form-control" required>
         </div>
     </div>
 </div>
 
 <div class="form-group">
     <label>Pracodawca</label>
-    <input type="text" placeholder="np. PwC" name="workEmp[]" class="form-control">
+    <input type="text" placeholder="np. PwC" name="workEmp[]" class="form-control" required>
 </div>
 
 <div class="row">
     <div class="col">
         <div class="form-group">
             <label>Data rozpoczęcia</label>
-            <input type="date" autocomplete="off" name="workStart[]" class="form-control" id="input-start-date">
+            <input type="date" autocomplete="off" name="workStart[]" class="form-control" id="input-start-date" required>
         </div>
     </div>
     <div class="col">
         <div class="form-group">
             <label>Data zakończenia</label>
-            <input type="date" name="workEnd[]" class="form-control" id="input-end-date">
+            <input type="date" name="workEnd[]" class="form-control" id="input-end-date" required>
         </div>
     </div>
 </div>
@@ -462,34 +460,34 @@ let education_element = `
                     <div class="col">
                         <div class="form-group">
                             <label>Stopień / poziom</label>
-                            <input type="text" placeholder="np. licencjat" name="eduDeg[]" class="form-control" id="input-edu-title">
+                            <input type="text" placeholder="np. licencjat" name="eduDeg[]" class="form-control" id="input-edu-title" required>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label>Miasto / miejscowość</label>
                             <input type="text" autocomplete="off" name="eduCity[]" placeholder="np. Warszawa"
-                                class="form-control">
+                                class="form-control" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Szkoła / uczelnia</label>
-                    <input type="text" placeholder="np. Politechnika Białostocka" name="eduSchool[]" class="form-control">
+                    <input type="text" placeholder="np. Politechnika Białostocka" name="eduSchool[]" class="form-control" required>
                 </div>
 
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label>Data rozpoczęcia</label>
-                            <input type="date" autocomplete="off" name="eduStart[]" class="form-control" id="input-start-date">
+                            <input type="date" autocomplete="off" name="eduStart[]" class="form-control" id="input-start-date" required>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label>Data zakończenia</label>
-                            <input type="date" name="eduEnd[]" class="form-control" id="input-end-date">
+                            <input type="date" name="eduEnd[]" class="form-control" id="input-end-date" required>
                         </div>
                     </div>
                 </div>
@@ -524,13 +522,13 @@ let languages_element = `
                     <div class="col">
                         <div class="form-group">
                             <label>Język</label>
-                            <input type="text" placeholder="np. hiszpański" name="langName[]" class="form-control" id="input-lang-title">
+                            <input type="text" placeholder="np. hiszpański" name="langName[]" class="form-control" id="input-lang-title" required>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label>Poziom</label>
-                            <select name="langDeg[]" class="custom-select" id="input-level" title="Wybierz język">
+                            <select name="langDeg[]" class="custom-select" id="input-level" title="Wybierz język" required>
                                 <option disabled selected>Wybierz</option>
                                 <option value="A1">A1</option>
                                 <option value="A2">A2</option>
@@ -569,13 +567,13 @@ let skills_element = `
     <div class="col">
         <div class="form-group">
             <label>Umiejętność</label>
-            <input type="text" placeholder="np. obsługa Microsoft Word" name="skillName[]" class="form-control" id="input-skill-title">
+            <input type="text" placeholder="np. obsługa Microsoft Word" name="skillName[]" class="form-control" id="input-skill-title" required>
         </div>
     </div>
     <div class="col">
         <div class="form-group">
             <label>Poziom</label>
-            <select class="custom-select" id="input-level" name="skillDeg[]">
+            <select class="custom-select" id="input-level" name="skillDeg[]" required>
                 <option disabled selected>Wybierz poziom</option>
                 <option value="Zaawansowany">Zaawansowany</option>
                 <option value="Doświadczony">Doświadczony</option>
@@ -611,7 +609,7 @@ let hobbies_element = `
 
 <div class="form-group">
     <label>Hobby</label>
-    <input type="text" placeholder="np. wędrówki" name="hobbyName[]" class="form-control" id="input-hobby-title">
+    <input type="text" placeholder="np. wędrówki" name="hobbyName[]" class="form-control" id="input-hobby-title" required>
 </div>
 <div class="form-group text-right">
 <button type="button" class="btn btn-danger" id="delete-button">Usuń</button>
