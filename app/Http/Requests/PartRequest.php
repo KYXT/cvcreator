@@ -62,6 +62,7 @@ class PartRequest extends FormRequest
 
             'hobbyName[]'    => 'nullable|array',
             'hobbyName.*'    => 'nullable|string|min:2|max:250',
+            'cvtype'         => 'required|in:1,2'
         ];
     }
 }

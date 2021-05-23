@@ -88,10 +88,21 @@ class CvController extends Controller
 
         Session::put($this->secondPart, $data);
 
-        $pdf = PDF::loadView('cv', [
-            'firstPart'     => Session::get($this->firstPart),
-            'secondPart'    => Session::get($this->secondPart)
-        ]);
+        if ($data['cvtype'] == 1) {
+            $pdf = PDF::loadView('cv', [
+                'firstPart'     => Session::get($this->firstPart),
+                'secondPart'    => Session::get($this->secondPart)
+            ]);
+        } else {
+            //return view('cv2');
+
+            $pdf = PDF::loadView('cv2', [
+                'firstPart'     => Session::get($this->firstPart),
+                'secondPart'    => Session::get($this->secondPart)
+            ]);
+        }
+
+
 
         return $pdf->download('cv.pdf');
     }

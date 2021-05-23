@@ -55,6 +55,18 @@
         </div>
     </div>
 
+    <div class="history-form col-md-12" id="hobbies">
+        <div>
+            <label for="cv1">Formularz 1</label>
+            <input type="radio" id="cv1" name="cvtype" value="1" checked>
+        </div>
+        <div>
+            <label for="cv2">Formularz 2</label>
+            <input type="radio" id="cv2" name="cvtype" value="2">
+        </div>
+    </div>
+
+
 
     <div class="d-flex justify-content-center mt-4">
         <button type="submit" class="btn btn-primary mb-5 btn-lg">Pobierz PDF</button>
